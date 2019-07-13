@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">SoftwareUber</string>
+    <string name="txt_cedula">Cédula</string>
+    <string name="txt_Nombre">Nombre</string>
+    <string name="txt_Apellido">Apellido</string>
+    <string name="txt_correo">Correo Electronico</string>
+    <string name="txt_telefono">Telefono</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_verificar">Verificar Password</string>
+    <string name="txt_formulario">Registro Cliente</string>
+    <string name="button">Aceptar</string>
+</resources>

@@ -117,9 +117,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("",edtCedula.getText().toString());
-                //Ponemos los demas parametros del registro
-
+                parametros.put("cedula",edtCedula.getText().toString());
+                parametros.put("nombre",edtNombre.getText().toString());
+                parametros.put("apellido",edtApellido.getText().toString());
+                parametros.put("correo",edtCorreo.getText().toString());
+                parametros.put("telefono",edtTelefono.getText().toString());
+                parametros.put("contrasena",edtPassword.getText().toString());
                 return parametros;
             }
         };

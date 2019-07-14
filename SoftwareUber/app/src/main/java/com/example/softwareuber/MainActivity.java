@@ -17,19 +17,20 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     EditText edtCedula, edtNombre, edtApellido,
-            edtCorreo, edtTelefono, edtPassword, edtVerifPass;
+            edtCorreo, edtPassword, edtVerifPass;
     Button btnAceptar;
+    BigInteger valorMd5 = null;
 
     public static final String REGEX_NUMEROS = "^[0-9]+$"; //validar numeros
     public static final String REGEX_LETRAS = "^[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ\\s]+$"; //validar letras
     public static final String REGEX_EMAIL ="^[a-zA-Z0-9\\._-]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,4}$"; //validar correo electronico
-    public static final String REGEX_NUM_CELULAR = "^[0-9]{10}$"; // validad telefono
 
 
     @Override
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         edtNombre = (EditText)findViewById(R.id.id_Nombre);
         edtApellido = (EditText)findViewById(R.id.id_Apellido);
         edtCorreo = (EditText)findViewById(R.id.id_correo);
-        edtTelefono = (EditText)findViewById(R.id.id_telefono);
         edtPassword = (EditText)findViewById(R.id.id_password);
         edtVerifPass = (EditText)findViewById(R.id.id_valPass);
 
@@ -61,11 +61,10 @@ public class MainActivity extends AppCompatActivity {
         String stNombre = edtNombre.getText().toString().trim();
         String stApellido = edtApellido.getText().toString().trim();
         String stCorreo = edtCorreo.getText().toString().trim();
-        String stTelefono = edtTelefono.getText().toString().trim();
         String stPassword = edtPassword.getText().toString();
         String stVeriPass = edtVerifPass.getText().toString();
 
-        if(!stCedula.isEmpty() && !stNombre.isEmpty() && !stApellido.isEmpty() && !stCorreo.isEmpty() && !stTelefono.isEmpty() && !stPassword.isEmpty() && !stVeriPass.isEmpty()){
+        if(!stCedula.isEmpty() && !stNombre.isEmpty() && !stApellido.isEmpty() && !stCorreo.isEmpty() && !stPassword.isEmpty() && !stVeriPass.isEmpty()){
             int i=0;
             Pattern patron = Pattern.compile(REGEX_LETRAS);
             if(patron.matcher(stNombre).matches()){
@@ -88,13 +87,19 @@ public class MainActivity extends AppCompatActivity {
 
             if(stPassword.compareTo(stVeriPass) == 0){
                 i++;
+                byte[] md5Password = stPassword.getBytes();
+                try {
+                    valorMd5 = new BigInteger(1,MD5.cryptMD5(md5Password));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }else{
                 Toast.makeText(this, "Las constraseñas no son iguales",Toast.LENGTH_SHORT).show();
             }
 
             if(i==4){
                 Toast.makeText(this, "Ya llegaste aqui", Toast.LENGTH_SHORT).show();
-                registrar("http://192.168.0.102/ConexionWebServices/insert.php");
+                registrar("http://192.168.0.102/ConexionWebServices/insert.php",valorMd5.toString());
             }
 
         }else{
@@ -102,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void registrar(String url){
+    private void registrar(String url, final String md5){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -121,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 parametros.put("nombre",edtNombre.getText().toString());
                 parametros.put("apellido",edtApellido.getText().toString());
                 parametros.put("correo",edtCorreo.getText().toString());
-                parametros.put("telefono",edtTelefono.getText().toString());
-                parametros.put("contrasena",edtPassword.getText().toString());
+                parametros.put("contrasena",md5);
                 return parametros;
             }
         };

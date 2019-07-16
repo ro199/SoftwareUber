@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "857148515890",
+    "firebase_url": "https://softwareuber.firebaseio.com",
+    "project_id": "softwareuber",
+    "storage_bucket": "softwareuber.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857148515890:android:106a278883c8d603",
+        "android_client_info": {
+          "package_name": "com.example.softwareuber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857148515890-pgigar1uhe7gjjmj62vjm349irvrctbv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.softwareuber",
+            "certificate_hash": "dbc66aae92b73fabc7b00865ba6cd44215e9aa8c"
+          }
+        },
+        {
+          "client_id": "857148515890-4c2ebap03urpjgpmjqn7e49pjgv2kgvs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuAgxqPhxkgbwgOS-HZXEx9tTAV3jeBj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857148515890-4c2ebap03urpjgpmjqn7e49pjgv2kgvs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

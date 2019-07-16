@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/id_verificarCod"
         android:layout_width="188dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
@@ -38,6 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="372dp"
@@ -51,10 +52,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/id_buttonEnviar" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/id_buttonVerificar"
         android:layout_width="188dp"
         android:layout_height="43dp"
         android:layout_marginStart="8dp"
@@ -68,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/id_verificarCod"
         app:layout_constraintVertical_bias="0.141" />
 
     <EditText
@@ -82,14 +83,14 @@
         android:layout_marginRight="8dp"
         android:ems="10"
         android:hint="@string/txt_telefono"
-        android:inputType="number"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.869"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/id_buttonEnviar"
         android:layout_width="179dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
@@ -101,4 +102,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id_telefono" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SoftwareUber</string>
+    <string name="app_name">Uber</string>
     <string name="txt_cedula">Cédula</string>
     <string name="txt_Nombre">Nombre</string>
     <string name="txt_Apellido">Apellido</string>
@@ -9,7 +9,7 @@
     <string name="txt_verificar">Verificar Password</string>
     <string name="txt_formulario">Registro Cliente</string>
     <string name="button">Aceptar</string>
-    <string name="txt_TituloTele" >Verificar el Telefono</string>
+    <string name="txt_TituloTele">Verificar el Telefono</string>
     <string name="button_sent">Enviar Codigo</string>
     <string name="txt_tituloVerificacion">Introduce el código de verificación que te enviamos por SMS</string>
     <string name="txt_codigo">Código de verificación</string>

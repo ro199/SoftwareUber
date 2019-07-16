@@ -3,6 +3,7 @@ package com.example.softwareuber;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //registrar("http://192.168.0.102/ConexionWebServices/insert.php");
-                validar();
+                //validar();
+                startActivity(new Intent(MainActivity.this,Telefono.class));
             }
         });
     }
@@ -90,16 +92,20 @@ public class MainActivity extends AppCompatActivity {
                 byte[] md5Password = stPassword.getBytes();
                 try {
                     valorMd5 = new BigInteger(1,MD5.cryptMD5(md5Password));
+                    Toast.makeText(this,"Llegue al hash",Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                Toast.makeText(this,"Sali del hash",Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "Las constraseñas no son iguales",Toast.LENGTH_SHORT).show();
             }
-
+            Toast.makeText(this,"Justo estoy aqui",Toast.LENGTH_SHORT).show();
             if(i==4){
-                Toast.makeText(this, "Ya llegaste aqui", Toast.LENGTH_SHORT).show();
-                registrar("http://192.168.0.102/ConexionWebServices/insert.php",valorMd5.toString());
+                Toast.makeText(this, "Ya llegaste aqui, ahora vas a telefono", Toast.LENGTH_SHORT).show();
+                //registrar("http://192.168.0.102/ConexionWebServices/insert.php",valorMd5.toString());
+                //Intent siguiente = new Intent(this, Telefono.class);
+                //startActivity(siguiente);
             }
 
         }else{

@@ -9,7 +9,9 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:textColor="@color/bt_black"
         android:layout_width="wrap_content"
+        android:gravity="center"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -31,19 +33,19 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="447dp"
-        android:layout_above="@+id/id_button"
+        android:layout_height="476dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="34dp"
         android:layout_marginEnd="13dp"
         android:layout_marginRight="13dp"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="153dp"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
@@ -60,7 +62,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
+                android:background="@drawable/ovalo"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/txt_cedula"
                 android:inputType="number"
                 android:textSize="24sp"
@@ -77,7 +81,9 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
+                android:background="@drawable/ovalo"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/txt_Nombre"
                 android:inputType="textPersonName"
                 android:textSize="24sp"
@@ -94,13 +100,15 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
+                android:background="@drawable/ovalo"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/txt_Apellido"
                 android:inputType="textPersonName"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText19" />
+                app:layout_constraintTop_toBottomOf="@+id/id_Nombre" />
 
             <EditText
                 android:id="@+id/id_correo"
@@ -110,13 +118,15 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
+                android:background="@drawable/ovalo"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/txt_correo"
                 android:inputType="textEmailAddress"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText20" />
+                app:layout_constraintTop_toBottomOf="@+id/id_Apellido" />
 
             <EditText
                 android:id="@+id/id_password"
@@ -126,13 +136,15 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
+                android:background="@drawable/ovalo"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/txt_password"
                 android:inputType="textPassword"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText22" />
+                app:layout_constraintTop_toBottomOf="@+id/id_correo" />
 
             <EditText
                 android:id="@+id/id_valPass"
@@ -142,31 +154,33 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="8dp"
                 android:autofillHints=""
+                android:background="@drawable/ovalo"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="@string/txt_verificar"
                 android:inputType="textPassword"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText23"
+                app:layout_constraintTop_toBottomOf="@+id/id_password"
                 tools:targetApi="o" />
         </LinearLayout>
     </ScrollView>
 
     <Button
         android:id="@+id/id_button"
-        android:layout_width="99dp"
-        android:layout_height="59dp"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="295dp"
-        android:layout_marginLeft="295dp"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:layout_marginBottom="39dp"
-        android:background="@drawable/ovalo"
+        android:layout_marginStart="232dp"
+        android:layout_marginLeft="232dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="49dp"
+        android:background="@drawable/botonverde"
         android:text="@string/button" />
 </RelativeLayout>

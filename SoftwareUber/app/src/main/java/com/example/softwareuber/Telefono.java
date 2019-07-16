@@ -1,22 +1,122 @@
 package com.example.softwareuber;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.auth.PhoneAuthCredential;
+
+import java.util.concurrent.TimeUnit;
 
 public class Telefono extends AppCompatActivity {
-    EditText edtTelefono;
+    private int currentStep = 0;
+    EditText edtTelefono, edtVerificarCod;
+    Button botonEnviar, botonverificarCod;
 
-
-    public static final String REGEX_NUM_CELULAR = "^[0-9]{10}$"; // validar telefono
+    FirebaseAuth auth;
+    PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
+    String codigoVerificacion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_telefono);
 
         edtTelefono = (EditText)findViewById(R.id.id_telefono);
+        edtVerificarCod = (EditText)findViewById(R.id.id_verificarCod);
 
-        //String stTelefono = edtTelefono.getText().toString().trim();
+        botonEnviar = (Button)findViewById(R.id.id_buttonEnviar);
+        botonverificarCod = (Button)findViewById(R.id.id_buttonVerificar);
+
+        auth = FirebaseAuth.getInstance();
+
+        botonEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String NumeroTelefono = edtTelefono.getText().toString();
+
+                if (TextUtils.isEmpty(NumeroTelefono)) {
+                    edtTelefono.setError("Enter a Phone Number");
+                    edtTelefono.requestFocus();
+                }else if (edtTelefono.length() < 10) {
+                    edtTelefono.setError("Please enter a valid phone");
+                    edtTelefono.requestFocus();
+                } else {
+
+
+                    PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                            NumeroTelefono,        // Phone number to verify
+                            60,                 // Timeout duration
+                            TimeUnit.SECONDS,   // Unit of timeout
+                            Telefono.this,               // Activity (for callback binding)
+                            mCallback);        // OnVerificationStateChangedCallbacks
+                }
+                //enviarCodigo();
+            }
+        });
+        mCallback = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+
+            }
+
+            @Override
+            public void onVerificationFailed(FirebaseException e) {
+                Log.i("Fallo ","Faalo" + e.toString());
+                Toast.makeText(Telefono.this,"La verificacion fallo "+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                super.onCodeSent(s, forceResendingToken);
+                codigoVerificacion = s;
+                Toast.makeText(getApplicationContext(), "Se envio un codigo a su telefono", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        botonverificarCod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String codigo= edtVerificarCod.getText().toString();
+                if (TextUtils.isEmpty(codigo)) {
+                    edtTelefono.setError("Ingrese el codigo");
+                    edtTelefono.requestFocus();
+                }else if (edtTelefono.length() < 6) {
+                    edtTelefono.setError("Por favor ingrese un codigo valido");
+                    edtTelefono.requestFocus();
+                } else {
+                    singInWithPhone(PhoneAuthProvider.getCredential(codigoVerificacion,codigo));
+
+                }
+            }
+        });
+
     }
+
+    public void singInWithPhone(PhoneAuthCredential credential){
+        auth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(Telefono.this, "Usuario ingresado con exito", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(Telefono.this,"No ingreso",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 }

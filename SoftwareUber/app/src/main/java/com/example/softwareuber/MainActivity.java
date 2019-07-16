@@ -2,25 +2,14 @@ package com.example.softwareuber;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
             edtCorreo, edtPassword, edtVerifPass;
     Button btnAceptar;
     BigInteger valorMd5 = null;
+    ArrayList<String> lista;
 
     public static final String REGEX_NUMEROS = "^[0-9]+$"; //validar numeros
     public static final String REGEX_LETRAS = "^[a-zA-ZáÁéÉíÍóÓúÚñÑüÜ\\s]+$"; //validar letras
@@ -47,44 +37,55 @@ public class MainActivity extends AppCompatActivity {
         edtVerifPass = (EditText)findViewById(R.id.id_valPass);
 
         btnAceptar = (Button)findViewById(R.id.id_button);
-
+        lista = new ArrayList<>();
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //registrar("http://192.168.0.102/ConexionWebServices/insert.php");
-                //validar();
-                startActivity(new Intent(MainActivity.this,Telefono.class));
+                validar();
             }
         });
     }
 
     private void validar(){
         String stCedula = edtCedula.getText().toString();
-        String stNombre = edtNombre.getText().toString().trim();
-        String stApellido = edtApellido.getText().toString().trim();
-        String stCorreo = edtCorreo.getText().toString().trim();
+        String stNombre = edtNombre.getText().toString();
+        String stApellido = edtApellido.getText().toString();
+        String stCorreo = edtCorreo.getText().toString();
         String stPassword = edtPassword.getText().toString();
         String stVeriPass = edtVerifPass.getText().toString();
 
-        if(!stCedula.isEmpty() && !stNombre.isEmpty() && !stApellido.isEmpty() && !stCorreo.isEmpty() && !stPassword.isEmpty() && !stVeriPass.isEmpty()){
+        if(!stCedula.isEmpty() && !stNombre.trim().isEmpty() && !stApellido.trim().isEmpty() && !stCorreo.trim().isEmpty() && !stPassword.isEmpty() && !stVeriPass.isEmpty()){
             int i=0;
             Pattern patron = Pattern.compile(REGEX_LETRAS);
+            if(stCedula.length()<10 || stCedula.length()>11){
+                edtCedula.setError("Ingrese una cedula valida");
+                edtCedula.requestFocus();
+            }else{
+                lista.add(stCedula);
+                i++;
+            }
             if(patron.matcher(stNombre).matches()){
+                lista.add(stNombre);
                 i++;
             }else{
-                Toast.makeText(this, "Ingrese correcto el nombre",Toast.LENGTH_SHORT).show();
+                edtNombre.setError("Ingrese correctamente el nombre");
+                edtNombre.requestFocus();
             }
 
             if(patron.matcher(stApellido).matches()){
+                lista.add(stApellido);
                 i++;
             }else{
-                Toast.makeText(this, "Ingrese correcto el apellido",Toast.LENGTH_SHORT).show();
+                edtApellido.setError("Ingrese correctamente el apellido");
+                edtApellido.requestFocus();
             }
             Pattern patron1 = Pattern.compile(REGEX_EMAIL);
             if(patron1.matcher(stCorreo).matches()){
+                lista.add(stCorreo);
                 i++;
             }else{
-                Toast.makeText(this, "Ingrese correcto el correo",Toast.LENGTH_SHORT).show();
+                edtCorreo.setError("Ingrese correctamente el correo");
+                edtCorreo.requestFocus();
             }
 
             if(stPassword.compareTo(stVeriPass) == 0){
@@ -92,20 +93,22 @@ public class MainActivity extends AppCompatActivity {
                 byte[] md5Password = stPassword.getBytes();
                 try {
                     valorMd5 = new BigInteger(1,MD5.cryptMD5(md5Password));
-                    Toast.makeText(this,"Llegue al hash",Toast.LENGTH_SHORT).show();
+                    lista.add(valorMd5.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(this,"Sali del hash",Toast.LENGTH_SHORT).show();
+
             }else{
-                Toast.makeText(this, "Las constraseñas no son iguales",Toast.LENGTH_SHORT).show();
+                edtVerifPass.setError("Las constraseñas no son iguales");
+                edtVerifPass.requestFocus();
             }
-            Toast.makeText(this,"Justo estoy aqui",Toast.LENGTH_SHORT).show();
-            if(i==4){
-                Toast.makeText(this, "Ya llegaste aqui, ahora vas a telefono", Toast.LENGTH_SHORT).show();
+
+            if(i==5){
+
                 //registrar("http://192.168.0.102/ConexionWebServices/insert.php",valorMd5.toString());
-                //Intent siguiente = new Intent(this, Telefono.class);
-                //startActivity(siguiente);
+                Intent siguiente = new Intent(this, Telefono.class);
+                siguiente.putExtra("Datos",lista);
+                startActivity(siguiente);
             }
 
         }else{
@@ -113,32 +116,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void registrar(String url, final String md5){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion Exitosa", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("cedula",edtCedula.getText().toString());
-                parametros.put("nombre",edtNombre.getText().toString());
-                parametros.put("apellido",edtApellido.getText().toString());
-                parametros.put("correo",edtCorreo.getText().toString());
-                parametros.put("contrasena",md5);
-                return parametros;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-
-    }
 }

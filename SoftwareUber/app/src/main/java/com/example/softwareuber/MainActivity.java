@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             int i=0;
             Pattern patron = Pattern.compile(REGEX_LETRAS);
             if(stCedula.length()<10 || stCedula.length()>11){
-                edtCedula.setError("Ingrese una cedula valida");
+                edtCedula.setError("Ingrese una cédula válida");
                 edtCedula.requestFocus();
             }else{
                 lista.add(stCedula);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }else{
-                edtVerifPass.setError("Las constraseñas no son iguales");
+                edtVerifPass.setError("Las contraseñas no son iguales");
                 edtVerifPass.requestFocus();
             }
 
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }else{
-            Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Falta llenar campos, vuelva a intentarlo", Toast.LENGTH_SHORT).show();
         }
     }
 

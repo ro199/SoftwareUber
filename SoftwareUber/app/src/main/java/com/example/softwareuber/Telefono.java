@@ -131,7 +131,7 @@ public class Telefono extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(Telefono.this, "Usuario ingresado con exito", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Telefono.this, "Los datos ingresados son correctos, Bienvenido", Toast.LENGTH_SHORT).show();
                             registrar("http://172.29.65.1/ConexionWebServices/insert.php");//cambiar la ip
                         }else{
                             Toast.makeText(Telefono.this,"No ingreso",Toast.LENGTH_SHORT).show();

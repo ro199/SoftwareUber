@@ -27,7 +27,7 @@ public class SplashScreemMain extends AppCompatActivity {
         conductor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(SplashScreemMain.this,));
+                startActivity(new Intent( SplashScreemMain.this,EleccionVehiculo.class));
             }
         });
     }

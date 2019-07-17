@@ -19,6 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"></activity>
+        <activity android:name=".EleccionVehiculo" />
+        <activity android:name=".RegistroConductor" />
         <activity android:name=".TarjetaCredito" />
         <activity android:name=".Telefono" />
         <activity android:name=".SplashScreemMain">

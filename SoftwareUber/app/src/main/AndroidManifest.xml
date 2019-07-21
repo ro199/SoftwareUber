@@ -46,6 +46,9 @@
             android:label="@string/title_activity_menu_bar"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".EleccionVehiculo" />
+        <activity android:name=".RegistroConductor" />
         <activity android:name=".TarjetaCredito" />
         <activity android:name=".Telefono" />
         <activity android:name=".SplashScreemMain">

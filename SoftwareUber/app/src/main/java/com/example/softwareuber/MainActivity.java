@@ -58,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
             int i=0;
             Pattern patron = Pattern.compile(REGEX_LETRAS);
             if(stCedula.length()<10 || stCedula.length()>11 ||!validaCedula(stCedula)){
+            if(stCedula.length()<10 || stCedula.length()>11){
+
                 edtCedula.setError("Ingrese una cédula válida");
                 edtCedula.requestFocus();
             }else{
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }else{
             return false;
+
         }
     }
 

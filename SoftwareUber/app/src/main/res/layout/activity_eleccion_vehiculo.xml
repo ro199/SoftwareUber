@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo"
+    android:gravity="center"
+    tools:context=".EleccionVehiculo">
+
+    <TextView
+        android:id="@+id/tittleEleccionVehiculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/bt_black"
+        android:gravity="center"
+        android:text="Selecciona un tipo de conductor:"
+        android:textIsSelectable="false"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/btn_conVehiculo"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/botonverde"
+        android:text="Conductor con vehiculo" />
+
+    <Button
+        android:id="@+id/btn_sinVehiculo"
+        android:layout_width="307dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/botonverde"
+        android:text="conductor sin vehiculo" />
+</LinearLayout>

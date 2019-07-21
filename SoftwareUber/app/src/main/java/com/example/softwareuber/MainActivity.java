@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         if(!stCedula.isEmpty() && !stNombre.trim().isEmpty() && !stApellido.trim().isEmpty() && !stCorreo.trim().isEmpty() && !stPassword.isEmpty() && !stVeriPass.isEmpty()){
             int i=0;
             Pattern patron = Pattern.compile(REGEX_LETRAS);
-            if(stCedula.length()<10 || stCedula.length()>11){
-                edtCedula.setError("Ingrese una cedula valida");
+            if(stCedula.length()<10 || stCedula.length()>11 ||!validaCedula(stCedula)){
+                edtCedula.setError("Ingrese una cédula válida");
                 edtCedula.requestFocus();
             }else{
                 lista.add(stCedula);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }else{
-                edtVerifPass.setError("Las constraseñas no son iguales");
+                edtVerifPass.setError("Las contraseñas no son iguales");
                 edtVerifPass.requestFocus();
             }
 
@@ -112,7 +112,41 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }else{
-            Toast.makeText(this, "Debes llenar todos los campos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Falta llenar campos, vuelva a intentarlo", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public static boolean validaCedula(String x){
+        int suma=0;
+        int a[]=new int [x.length()/2];
+        int b[]=new int [(x.length()/2)];
+        int c=0;
+        int d=1;
+        for (int i = 0; i < x.length()/2; i++) {
+            a[i]=Integer.parseInt(String.valueOf(x.charAt(c)));
+            c=c+2;
+            if (i < (x.length()/2)-1) {
+                b[i]=Integer.parseInt(String.valueOf(x.charAt(d)));
+                d=d+2;
+            }
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            a[i]=a[i]*2;
+            if (a[i] >9){
+                a[i]=a[i]-9;
+            }
+            suma=suma+a[i]+b[i];
+        }
+        int aux=suma/10;
+        int dec=(aux+1)*10;
+        if ((dec - suma) == Integer.parseInt(String.valueOf(x.charAt(x.length()-1))))
+            return true;
+        else
+        if(suma%10==0 && x.charAt(x.length()-1)=='0'){
+            return true;
+        }else{
+            return false;
         }
     }
 

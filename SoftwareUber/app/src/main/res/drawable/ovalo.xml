@@ -15,7 +15,7 @@
 
     <stroke
         android:width="10px"
-        android:color="@color/bt_black"
+        android:color="@color/colorPrimaryDark"
         >
 
     </stroke>

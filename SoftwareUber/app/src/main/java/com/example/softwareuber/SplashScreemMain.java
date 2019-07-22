@@ -20,7 +20,8 @@ public class SplashScreemMain extends AppCompatActivity {
         pasajero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SplashScreemMain.this,MainActivity.class));
+                //startActivity(new Intent(SplashScreemMain.this,MainActivity.class));
+                startActivity(new Intent(SplashScreemMain.this,TarjetaCredito.class));
             }
         });
 

@@ -69,8 +69,6 @@ public class TarjetaCredito extends AppCompatActivity {
         intent.putExtra(PaymentActivity.EXTRA_PAYMENT,payPalPayment);
         startActivityForResult(intent,PAYPAL_REQUEST_CODE);
 
-
-
     }
 
     @Override

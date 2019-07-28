@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:textColor="@color/bt_black"
+        android:textColor="@color/colorPrimaryDark"
         android:gravity="center"
         android:text="Selecciona un tipo de conductor:"
         android:textIsSelectable="false"

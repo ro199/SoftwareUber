@@ -24,7 +24,7 @@
         android:layout_marginRight="100dp"
         android:gravity="center"
         android:text="@string/txt_formulario"
-        android:textColor="@color/bt_black"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
             int i=0;
             Pattern patron = Pattern.compile(REGEX_LETRAS);
             if(stCedula.length()<10 || stCedula.length()>11 ||!validaCedula(stCedula)){
-            if(stCedula.length()<10 || stCedula.length()>11){
 
                 edtCedula.setError("Ingrese una cédula válida");
                 edtCedula.requestFocus();
@@ -117,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Falta llenar campos, vuelva a intentarlo", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     public static boolean validaCedula(String x){
         int suma=0;

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.maps.GoogleMap;
+
 public class SplashScreemMain extends AppCompatActivity {
     Button pasajero, conductor;
     @Override
@@ -20,8 +22,10 @@ public class SplashScreemMain extends AppCompatActivity {
         pasajero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(SplashScreemMain.this,MainActivity.class));
-                startActivity(new Intent(SplashScreemMain.this,TarjetaCredito.class));
+                startActivity(new Intent(SplashScreemMain.this,MainActivity.class));
+                //startActivity(new Intent(SplashScreemMain.this,TarjetaCredito.class));
+                //startActivity(new Intent(SplashScreemMain.this,Permisos.class));
+                //startActivity(new Intent(SplashScreemMain.this, GoogleMaps.class));
             }
         });
 

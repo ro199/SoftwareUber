@@ -72,9 +72,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -99,8 +101,10 @@ public class MenuBar extends AppCompatActivity
     Marker mCurrLocationMarker;
     GoogleApiClient mGoogleApiClient;
     double latitude, longitude;
+    TextView nombreUsuario;
 
     private final float DEFAULT_ZOOM = 15;
+    ArrayList<String> cliente;
 
 
     @Override
@@ -124,6 +128,8 @@ public class MenuBar extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        cliente = new ArrayList<>();
+        cliente = getIntent().getStringArrayListExtra("Datos");
 
         materialSearchBar = findViewById(R.id.searchBar);
         search = (Button)findViewById(R.id.B_search);
@@ -136,6 +142,9 @@ public class MenuBar extends AppCompatActivity
         Places.initialize(MenuBar.this, getString(R.string.google_maps_key));
         placesClient = Places.createClient(this);
         final AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
+
+        //nombreUsuario = (TextView)findViewById(R.id.NombreUsuario);
+        //nombreUsuario.setText(cliente.get(1)+""+cliente.get(2));
 
         materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
             @Override
@@ -336,14 +345,12 @@ public class MenuBar extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(new Intent(MenuBar.this,TarjetaCredito.class));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 

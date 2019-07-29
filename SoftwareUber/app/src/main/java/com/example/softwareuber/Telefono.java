@@ -3,6 +3,7 @@ package com.example.softwareuber;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,7 +27,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +47,8 @@ public class Telefono extends AppCompatActivity {
     FirebaseAuth auth;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallback;
     String codigoVerificacion;
+
+    DatabaseReference databaseReference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +66,7 @@ public class Telefono extends AppCompatActivity {
         datos = getIntent().getStringArrayListExtra("Datos");
 
         auth = FirebaseAuth.getInstance();
+        databaseReference= FirebaseDatabase.getInstance().getReference();
 
         botonEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,8 +138,8 @@ public class Telefono extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(Telefono.this, "Los datos ingresados son correctos, Bienvenido", Toast.LENGTH_SHORT).show();
-                            registrar("http://172.29.65.1/ConexionWebServices/insert.php");//cambiar la ip
+                            Toast.makeText(Telefono.this, "Los datos ingresados son correctos", Toast.LENGTH_SHORT).show();
+                            registrar();
                         }else{
                             Toast.makeText(Telefono.this,"No ingreso",Toast.LENGTH_SHORT).show();
                         }
@@ -140,34 +147,16 @@ public class Telefono extends AppCompatActivity {
                 });
     }
 
-    private void registrar(String url){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(getApplicationContext(), "Operacion Exitosa", Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("cedula",datos.get(0));
-                parametros.put("nombre",datos.get(1));
-                parametros.put("apellido",datos.get(2));
-                parametros.put("correo",datos.get(3));
-                parametros.put("telefono",NumeroTelefono);
-                parametros.put("contrasena",datos.get(4));
-                return parametros;
-            }
-        };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
 
+    public void registrar(){
+        //String id = databaseReference.push().getKey();
+        Cliente cliente = new Cliente(datos.get(0),datos.get(1),datos.get(2),datos.get(3),NumeroTelefono,datos.get(4));
+        databaseReference.child("cliente").child(datos.get(0)).setValue(cliente);
+        Toast.makeText(this, "Usuario registrado, Bieenvenido", Toast.LENGTH_SHORT).show();
+        Intent siguiente = new Intent(this, MenuBar.class);
+        siguiente.putExtra("Datos", datos);
+        startActivity(siguiente);
     }
 
 }

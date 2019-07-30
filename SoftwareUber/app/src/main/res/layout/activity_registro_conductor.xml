@@ -1,101 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@drawable/fondo"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".RegistroConductor">
 
-    <EditText
-        android:id="@+id/nombresRegistro"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="Nombres:" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/apellidosRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="Apellidos:" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/cedulaRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="Número de Cédula:"
-        android:inputType="number" />
+            <TextView
+                android:id="@+id/textViewRegistro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Registro de Conductor"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:translationX="100dp" />
 
-    <EditText
-        android:id="@+id/fechaRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="Fecha de Nacimiento: dd/mm/aaaa"
-        android:inputType="date" />
+            <EditText
+                android:id="@+id/nombresRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="Nombres:" />
 
-    <EditText
-        android:id="@+id/fonoRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="Teléfono:"
-        android:inputType="phone" />
+            <EditText
+                android:id="@+id/apellidosRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="Apellidos:" />
+
+            <EditText
+                android:id="@+id/cedulaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="Número de Cédula:"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/fechaRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="Fecha de Nacimiento: aaaa-mm-dd"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/direccionRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="Dirección:"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/mailRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="e-mail:"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/passRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="Password:"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/ValpassRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/ovalo"
+                android:gravity="center"
+                android:hint="Repetir Password:"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/btn_siguiente"
+                android:layout_width="218dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/botonverde"
+                android:gravity="center"
+                android:text="Siguiente" />
+        </LinearLayout>
+    </ScrollView>
 
 
-    <EditText
-        android:id="@+id/direccionRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="Dirección:"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/mailRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="e-mail:"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/passRegistro"
-        android:layout_width="match_parent"
-        android:layout_height="57dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ovalo"
-        android:gravity="center"
-        android:hint="Password:"
-        android:inputType="textPassword" />
-
-    <Button
-        android:id="@+id/btn_registrar"
-        android:layout_width="218dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/botonverde"
-        android:gravity="center"
-        android:text="Registrar" />
-
-
-</LinearLayout>
+</RelativeLayout>

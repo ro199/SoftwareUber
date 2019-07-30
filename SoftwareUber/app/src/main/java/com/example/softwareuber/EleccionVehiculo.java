@@ -20,16 +20,16 @@ public class EleccionVehiculo extends AppCompatActivity {
         conVehiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent convehiculo = new Intent(EleccionVehiculo.this, RegistroConductor.class);
-                EleccionVehiculo.this.startActivity(convehiculo);
-               // startActivity(new Intent (EleccionVehiculo.this,RegistroConductor.class)); --Es lo mismo de arriba
+                //Intent convehiculo = new Intent(EleccionVehiculo.this, RegistroConductor.class);
+                //EleccionVehiculo.this.startActivity(convehiculo);
+               startActivity(new Intent (EleccionVehiculo.this,RegistroConductor.class));
             }
         });
         sinVehiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sinvehiculo = new Intent(EleccionVehiculo.this, RegistroConductor.class);
-                EleccionVehiculo.this.startActivity(sinvehiculo);
+               // Intent sinvehiculo = new Intent(EleccionVehiculo.this, RegistroConductor.class);
+                //EleccionVehiculo.this.startActivity(sinvehiculo);
                 //startActivity(new Intent (EleccionVehiculo.this,RegistroConductor.class)); --Es lo mismo de arriba
             }
         });
